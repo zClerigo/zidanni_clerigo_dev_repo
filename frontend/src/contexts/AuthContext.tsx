@@ -1,80 +1,88 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { User, Session, AuthError } from '@supabase/supabase-js'
-import { supabase } from '../lib/supabaseClient'
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-interface AuthContextType {
-  user: User | null
-  session: Session | null
-  loading: boolean
-  signIn: (email: string, password: string) => Promise<{ error: AuthError | null }>
-  signUp: (email: string, password: string) => Promise<{ error: AuthError | null }>
-  signOut: () => Promise<void>
+interface User {
+  id: string;
+  email: string;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined)
+interface AuthContextType {
+  user: User | null;
+  loading: boolean;
+  signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signOut: () => Promise<void>;
+}
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null)
-  const [session, setSession] = useState<Session | null>(null)
-  const [loading, setLoading] = useState(true)
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Simulate checking for an existing session
   useEffect(() => {
-    const getInitialSession = async () => {
-      const { data, error } = await supabase.auth.getSession()
-      if (error) {
-        console.error(error)
-      }
-      
-      setSession(data.session)
-      setUser(data.session?.user ?? null)
-      setLoading(false)
+    const storedUser = localStorage.getItem('stub_user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
     }
-    
-    getInitialSession()
-    
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session)
-        setUser(session?.user ?? null)
-        setLoading(false)
-      }
-    )
-    
-    return () => {
-      subscription.unsubscribe()
-    }
-  }, [])
-  
+    setLoading(false);
+  }, []);
+
   const signIn = async (email: string, password: string) => {
-    return await supabase.auth.signInWithPassword({ email, password })
-  }
-  
+    setLoading(true);
+    try {
+      const stubUser = {
+        id: '123',
+        email: email
+      };
+      
+      setUser(stubUser);
+      localStorage.setItem('stub_user', JSON.stringify(stubUser));
+      
+      return { error: null };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const signUp = async (email: string, password: string) => {
-    return await supabase.auth.signUp({ email, password })
-  }
-  
+    setLoading(true);
+    try {
+      const stubUser = {
+        id: '123',
+        email: email
+      };
+      
+      setUser(stubUser);
+      localStorage.setItem('stub_user', JSON.stringify(stubUser));
+      
+      return { error: null };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const signOut = async () => {
-    await supabase.auth.signOut()
-    setUser(null)
-    setSession(null)
-  }
-  
-  const value = {
-    user,
-    session,
-    loading,
-    signIn,
-    signUp,
-    signOut
-  }
-  
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+    setLoading(true);
+    try {
+      setUser(null);
+      localStorage.removeItem('stub_user');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {
-  const context = useContext(AuthContext)
+  const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider')
+    throw new Error('useAuth must be used within an AuthProvider');
   }
-  return context
+  return context;
 }

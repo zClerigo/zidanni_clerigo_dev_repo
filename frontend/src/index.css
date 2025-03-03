@@ -1,4 +1,8 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -7,12 +11,17 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --border: 240 5.9% 90%;
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --ring: 240 5% 64.9%;
 }
 
 a {
@@ -66,5 +75,14 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-[#E5E7EB] outline-[#73737380];
+  }
+  body {
+    @apply bg-[#ffffff] text-[#000000];
   }
 }

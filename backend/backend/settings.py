@@ -15,6 +15,9 @@ import base64
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TIKTOK_CLIENT_KEY = 'sbawdufeueiq69euvk'
+TIKTOK_CLIENT_SECRET = 'tMjCi0gwYI5xeBorPFL4zLyrN1AAaLCH'
+TIKTOK_REDIRECT_URI = 'https://tasty-pens-grab.loca.lt/tiktok/callback' 
 
 
 # Quick-start development settings - unsuitable for production
@@ -64,8 +67,8 @@ CORS_ALLOWED_ORIGINS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'api.auth.SupabaseAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
@@ -144,3 +147,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Add this with your other settings
+JSON2VIDEO_API_KEY = 'iCtf6GfyIieBk2AMtyKS28KqALDjGPKvgaCAMtB2'
+

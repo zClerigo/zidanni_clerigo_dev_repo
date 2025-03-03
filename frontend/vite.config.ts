@@ -11,6 +11,15 @@ export default defineConfig({
         target: 'http://localhost:8000',
         changeOrigin: true,
       }
+    },
+    allowedHosts: [
+      '.loca.lt',
+      'localhost',
+    ]
+  },
+  define: {
+    'process.env': {
+      REACT_APP_JSON2VIDEO_API_KEY: JSON.stringify(process.env.REACT_APP_JSON2VIDEO_API_KEY)
     }
   }
 })

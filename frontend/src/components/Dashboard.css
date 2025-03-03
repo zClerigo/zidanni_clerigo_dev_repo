@@ -1,0 +1,191 @@
+/* Dashboard.css */
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    color: #82c91e;
+  }
+  
+  .section-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .add-calendar-button {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    width: 100%;
+    color: #82c91e;
+    background: white;
+    cursor: pointer;
+    font-size: 0.875rem;
+  }
+  
+  .add-calendar-button:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .calendar-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin-top: 0.75rem;
+  }
+  
+  .calendar-avatar {
+    width: 2rem;
+    height: 2rem;
+    background-color: #dee2e6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+    color: #495057;
+  }
+  
+  .status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+  }
+  
+  .status-draft { background-color: #cce5ff; }
+  .status-pending { background-color: #fff3cd; }
+  .status-edits { background-color: #f8d7da; }
+  .status-approved { background-color: #cce5ff; }
+  .status-scheduled { background-color: #d4edda; }
+  .status-published { background-color: #e2e3e5; }
+  .status-passed { background-color: #d4edda; }
+  .status-failed { background-color: #f8d7da; }
+  
+  .date-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #495057;
+    font-size: 0.875rem;
+  }
+  
+  .nav-link {
+    color: #495057;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    color: #228be6;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    color: #495057;
+  }
+  
+  .create-post-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid #82c91e;
+    border-radius: 6px;
+    color: #82c91e;
+    background: white;
+    cursor: pointer;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+  }
+  
+  .create-post-button:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .post-ideas {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+  }
+  
+  .post-ideas h3 {
+    color: #333;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .post-ideas p {
+    color: #6c757d;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .quick-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .quick-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    color: #228be6;
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  
+  .quick-link:hover {
+    background-color: #e9ecef;
+  }
+  
+  .status-count {
+    font-weight: 500;
+    color: #333;
+  }
